@@ -3,6 +3,8 @@
     <div class="w-1/3">
       <BasePanel title="Ciciara Real Time Chat">
         <template #body>
+          <ServerStatus class="text-sm" />
+
           <BaseForm ref="form" submit-text="login" @submit="performLogin">
             <template #content>
               <BaseInput
@@ -28,6 +30,7 @@
 
 <script>
 import { mapActions } from "vuex";
+import ServerStatus from "@/components/ServerStatus.vue";
 import BasePanel from "@/components/base/BasePanel.vue";
 import BaseForm from "@/components/base/BaseForm.vue";
 import BaseInput from "@/components/base/BaseInput.vue";
@@ -38,6 +41,7 @@ export default {
   name: "LoginView",
 
   components: {
+    ServerStatus,
     BasePanel,
     BaseForm,
     BaseInput,
@@ -52,12 +56,6 @@ export default {
       { value: 2, text: "board" }
     ]
   }),
-
-  sockets: {
-    welcome(message) {
-      console.log(message);
-    }
-  },
 
   methods: {
     performLogin() {

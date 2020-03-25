@@ -1,4 +1,4 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faComments, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faCircle, faComments, faUser } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faComments, faUser);
+library.add(faCircle, faComments, faUser);
