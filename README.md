@@ -27,3 +27,7 @@ You can contribute in 3 simple steps
 - Fork this repository
 - Write your changes
 - Submit a Merge Request and describe why and how your changes can be beneficial
+
+**Why every commit has an emoji?**
+
+Because Emoji are the future of language
