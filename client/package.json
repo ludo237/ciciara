@@ -27,10 +27,10 @@
     "core-js": "^3.6.4",
     "date-fns": "^2.11.0",
     "register-service-worker": "^1.6.2",
-    "socket.io": "^2.3.0",
     "tailwindcss": "^1.2.0",
     "vue": "^2.6.11",
     "vue-router": "^3.1.5",
+    "vue-socket.io": "^3.0.7",
     "vuex": "^3.1.2"
   },
   "devDependencies": {
