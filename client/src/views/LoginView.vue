@@ -53,6 +53,12 @@ export default {
     ]
   }),
 
+  sockets: {
+    welcome(message) {
+      console.log(message);
+    }
+  },
+
   methods: {
     performLogin() {
       this

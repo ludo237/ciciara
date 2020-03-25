@@ -7,7 +7,16 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 io.on("connection", socket => {
-  console.log("New websocket connection");
+  // Welcome the client
+  socket.emit("welcome", "Ciciara connection established");
+
+  // Broadcast user login
+  socket.broadcast.emit("connection", "New user has joined the chat");
+
+  socket.on("disconnect", () => {
+    // Broadcast user logout
+    io.emit("disconnection", "A user has left the chat");
+  });
 });
 
 const PORT = process.env.PORT || 2370;
