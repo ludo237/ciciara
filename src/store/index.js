@@ -8,7 +8,9 @@ import mutations from "./mutations";
 Vue.use(Vuex);
 
 const state = {
-  user: {}, // Logged user data
+  user: {
+    username: "",
+  }, // Logged user data
   rooms: [], // Array of objects
   selectedRoom: {} // Currently selected room
 }
