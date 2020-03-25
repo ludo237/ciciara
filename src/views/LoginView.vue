@@ -1,9 +1,9 @@
 <template>
-  <div>Hello World</div>
+  <div>Login here</div>
 </template>
 
 <script>
 export default {
-  name: "HomeView",
-};
+  name: "LoginView"
+}
 </script>
