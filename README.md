@@ -19,3 +19,11 @@ It's an Italian slang from the North Italy which means can be translated to "A g
 As usual run `yarn install` and then `yarn serve` to locally serve it. For deployment it depends on your platform of course.
 
 The real question is: *should you use it in production?*
+
+## How can I contribute
+
+You can contribute in 3 simple steps
+
+- Fork this repository
+- Write your changes
+- Submit a Merge Request and describe why and how your changes can be beneficial
