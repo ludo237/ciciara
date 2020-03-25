@@ -1,0 +1,34 @@
+{
+  "name": "ciciara",
+  "version": "0.1.0",
+  "description": "Server source code for Ciciara",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/ludo237/ciciara.git"
+  },
+  "keywords": [
+    "vue",
+    "node",
+    "exprenses",
+    "express"
+  ],
+  "author": "Claudio Ludovico",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/ludo237/ciciara/issues"
+  },
+  "homepage": "https://gitlab.com/ludo237/ciciara#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "uuid": "^7.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}

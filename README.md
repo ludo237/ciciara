@@ -16,9 +16,13 @@ It's an Italian slang from the North Italy which means can be translated to "A g
 
 ## How can I use this
 
-As usual run `yarn install` and then `yarn serve` to locally serve it. For deployment it depends on your platform of course.
+### Client
 
-The real question is: *should you use it in production?*
+Client is located in the `client` folder, change directory into it and run `yarn install` and then `yarn serve` to locally serve it.
+
+### Server
+
+The server source code is located in `server` but you can leverage the handy `docker-compose.yml` file to generate a small node-based container that will host the server for you
 
 ## How can I contribute
 

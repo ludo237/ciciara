@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  server:
+    image: node:alpine
+    container_name: ciciara_server
+    expose: [2370]
+    ports: 
+      - 2370:2370
+    working_dir: /home/node/app
+    volumes: 
+      - ./server:/home/node/app
+    command: "npm run server"
+
+networks: 
+    default:
+        name: ciciara_default
+        driver: bridge
