@@ -8,6 +8,7 @@ import mutations from "./mutations";
 Vue.use(Vuex);
 
 const state = {
+  online: false,
   user: {
     username: "",
   }, // Logged user data
