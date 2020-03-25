@@ -3,7 +3,7 @@
     <div class="w-1/3">
       <BasePanel title="Ciciara Real Time Chat">
         <template #body>
-          <BaseForm ref="form" submit-text="login" @submit="login">
+          <BaseForm ref="form" submit-text="login" @submit="performLogin">
             <template #content>
               <BaseInput
                 name="username"
@@ -11,11 +11,11 @@
                 icon="user"
                 required
               />
-              <BaseInput
-                type="password"
-                name="password"
-                icon="lock"
-                v-model="password"
+              <BaseSelect
+                name="room"
+                :options="rooms"
+                v-model="room"
+                icon="comments"
                 required
               />
             </template>
@@ -27,9 +27,12 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import BasePanel from "@/components/base/BasePanel.vue";
 import BaseForm from "@/components/base/BaseForm.vue";
 import BaseInput from "@/components/base/BaseInput.vue";
+import BaseSelect from "@/components/base/BaseSelect.vue";
+
 
 export default {
   name: "LoginView",
@@ -37,22 +40,28 @@ export default {
   components: {
     BasePanel,
     BaseForm,
-    BaseInput
+    BaseInput,
+    BaseSelect
   },
 
   data: () => ({
     username: "",
-    password: "",
+    room: "",
+    rooms: [
+      { value: 1, text: "lounge" },
+      { value: 2, text: "board" }
+    ]
   }),
 
   methods: {
-    login() {
-      console.log("login action here");
+    performLogin() {
+      this
+        .login({ username: this.username, channel: this.channel })
+        .then(() => { console.log("promise done") })
+        .finally(() => this.$refs.form.changeState("submitted"))
+    },
 
-      setTimeout(() => {
-        this.$refs.form.changeState("submitted");
-      }, 3000);
-    }
+    ...mapActions(["login"])
   }
 }
 </script>
