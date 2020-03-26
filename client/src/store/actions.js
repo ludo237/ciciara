@@ -20,3 +20,7 @@ export const socket_connect = ({ commit }) => {
 export const socket_disconnect = ({ commit }) => {
   commit(mutations.SET_CICIARA_OFFLINE);
 };
+
+export const socket_messageBroadcast = ({ commit }, message) => {
+  commit(mutations.APPEND_MESSAGE, message);
+}

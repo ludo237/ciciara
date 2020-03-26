@@ -10,8 +10,12 @@ export default {
   },
 
   [mutations.LOGIN]: (state, { username, roomId }) => {
-    state.auth.username = username;
+    state.user.username = username;
 
     state.selectedRoom = state.rooms.find(room => room.id === roomId);
+  },
+
+  [mutations.APPEND_MESSAGE]: (state, message) => {
+    state.selectedRoom.messages.push(message);
   }
 };

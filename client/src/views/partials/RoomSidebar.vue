@@ -9,7 +9,7 @@
         </h1>
         <div class="flex items-center mb-6">
           <UserStatus />
-          <span class="text-white opacity-50 text-sm" v-text="auth.username" />
+          <span class="text-white opacity-50 text-sm" v-text="user.username" />
         </div>
       </div>
       <div class="h-6 w-6 fill-current">
@@ -46,7 +46,7 @@ export default {
   },
 
   computed: {
-    ...mapState(["auth", "selectedRoom"]),
+    ...mapState(["user", "selectedRoom"]),
 
     ...mapGetters(["otherRooms"])
   }
