@@ -14,8 +14,8 @@ const state = {
     username: ""
   },
   rooms: [
-    { id: 1, name: "lounge" },
-    { id: 2, name: "board" }
+    { id: 1, name: "lounge", description: "main channel for everyone" },
+    { id: 2, name: "memes", description: "a dedicated channel for memes" }
   ],
   selectedRoom: {}
 };
