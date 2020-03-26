@@ -1,2 +1,3 @@
 export const SET_CICIARA_ONLINE = "SET_CICIARA_ONLINE";
 export const SET_CICIARA_OFFLINE = "SET_CICIARA_OFFLINE";
+export const LOGIN = "LOGIN";

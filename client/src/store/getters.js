@@ -1,1 +1,1 @@
-export const isCiciaraOnline = (state) => state.online;
+export const isCiciaraOnline = state => state.server.online;

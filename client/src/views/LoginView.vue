@@ -15,9 +15,11 @@
               />
               <BaseSelect
                 name="room"
-                :options="rooms"
                 v-model="room"
                 icon="comments"
+                :options="rooms"
+                :option-label="room => room.name"
+                :option-key="room => room.id"
                 required
               />
             </template>
@@ -29,13 +31,12 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 import ServerStatus from "@/components/ServerStatus.vue";
 import BasePanel from "@/components/base/BasePanel.vue";
 import BaseForm from "@/components/base/BaseForm.vue";
 import BaseInput from "@/components/base/BaseInput.vue";
 import BaseSelect from "@/components/base/BaseSelect.vue";
-
 
 export default {
   name: "LoginView",
@@ -50,22 +51,23 @@ export default {
 
   data: () => ({
     username: "",
-    room: "",
-    rooms: [
-      { value: 1, text: "lounge" },
-      { value: 2, text: "board" }
-    ]
+    room: ""
   }),
 
   methods: {
     performLogin() {
-      this
-        .login({ username: this.username, channel: this.channel })
-        .then(() => { console.log("promise done") })
-        .finally(() => this.$refs.form.changeState("submitted"))
+      this.login({ username: this.username, room: this.room })
+        .then(() => {
+          this.$router.push({ name: "room", params: { room: this.room } });
+        })
+        .finally(() => this.$refs.form.changeState("submitted"));
     },
 
     ...mapActions(["login"])
+  },
+
+  computed: {
+    ...mapState(["rooms"])
   }
-}
+};
 </script>

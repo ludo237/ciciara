@@ -4,17 +4,21 @@ import * as actions from "./actions";
 import * as getters from "./getters";
 import mutations from "./mutations";
 
-
 Vue.use(Vuex);
 
 const state = {
-  online: false,
-  user: {
-    username: "",
-  }, // Logged user data
-  rooms: [], // Array of objects
-  selectedRoom: {} // Currently selected room
-}
+  server: {
+    online: true
+  },
+  auth: {
+    username: ""
+  },
+  rooms: [
+    { id: 1, name: "lounge" },
+    { id: 2, name: "board" }
+  ],
+  selectedRoom: {}
+};
 
 export default new Vuex.Store({
   state,
