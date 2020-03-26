@@ -21,8 +21,8 @@
         <option
           v-for="(option, index) in options"
           :key="index"
-          :value="option.value"
-          v-text="option.text || option.value"
+          :value="optionKey(option)"
+          v-text="optionLabel(option)"
         />
       </select>
     </div>
@@ -38,7 +38,7 @@ export default {
   props: {
     name: {
       required: true,
-      type: String,
+      type: String
     },
 
     value: String,
@@ -46,6 +46,33 @@ export default {
     options: {
       required: true,
       type: Array
+    },
+
+    optionLabel: {
+      type: Function,
+      default(option) {
+        if (typeof option === "object") {
+          if (!option.hasOwnProperty(this.label)) {
+            return console.warn("Default option.label missing on options", option);
+          }
+          return option[this.label];
+        }
+        return option;
+      }
+    },
+
+    optionKey: {
+      type: Function,
+      default(option) {
+        if (typeof option !== "object") {
+          return option;
+        }
+        try {
+          return option.id;
+        } catch (e) {
+          return console.warn("Default option.id missing on options", option, e);
+        }
+      }
     },
 
     label: String,
@@ -56,11 +83,11 @@ export default {
 
     readonly: Boolean,
 
-    helpText: String,
+    helpText: String
   },
 
   components: {
     BaseIcon: () => import(/* webpackChunkName: "base-icon" */ "@/components/base/BaseIcon.vue")
-  },
-}
+  }
+};
 </script>
