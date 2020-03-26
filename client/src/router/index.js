@@ -7,18 +7,20 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "Login",
+    name: "login",
     component: LoginView
   },
   {
     path: "/rooms",
-    name: "Rooms",
-    component: () => import(/* webpackChunkName: "rooms-view" */ "@/views/RoomsView.vue"),
+    name: "rooms",
+    component: () =>
+      import(/* webpackChunkName: "rooms-view" */ "@/views/RoomsView.vue")
   },
   {
     path: "/rooms/:room",
-    name: "Room",
-    component: () => import(/* webpackChunkName: "room-view" */ "@/views/RoomView.vue")
+    name: "room",
+    component: () =>
+      import(/* webpackChunkName: "room-view" */ "@/views/RoomView.vue")
   }
 ];
 
