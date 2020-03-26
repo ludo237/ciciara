@@ -1,6 +1,6 @@
 <template>
   <label :for="name" class="block my-3">
-    <span class="text-gray-600 capitalize" v-text="label || name" />
+    <span class="text-gray-600 capitalize" v-if="label" v-text="label" />
 
     <div class="relative mt-1">
       <div class="absolute h-full flex items-center justify-center" v-if="icon">
@@ -18,6 +18,7 @@
         :readonly="readonly"
         class="form-input w-full bg-gray-200 text-gray-500 focus:bg-white focus:text-gray-900"
         :class="additionalClasses"
+        :placeholder="placeholder"
         @input="$emit('input', $event.target.value)"
       />
     </div>
@@ -27,7 +28,6 @@
 </template>
 
 <script>
-
 export default {
   name: "BaseInput",
 
@@ -42,7 +42,7 @@ export default {
 
     name: {
       required: true,
-      type: String,
+      type: String
     },
 
     label: String,
@@ -54,6 +54,8 @@ export default {
     readonly: Boolean,
 
     helpText: String,
+
+    placeholder: String
   },
 
   components: {
@@ -72,5 +74,5 @@ export default {
       return classes;
     }
   }
-}
+};
 </script>
