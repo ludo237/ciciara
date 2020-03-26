@@ -11,12 +11,6 @@ const routes = [
     component: LoginView
   },
   {
-    path: "/rooms",
-    name: "rooms",
-    component: () =>
-      import(/* webpackChunkName: "rooms-view" */ "@/views/RoomsView.vue")
-  },
-  {
     path: "/rooms/:room",
     name: "room",
     component: () =>
