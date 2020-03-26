@@ -1,4 +1,4 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faCircle, faComments, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faCircle, faComments, faSignOutAlt, faUser } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faCircle, faComments, faUser);
+library.add(faCircle, faComments, faSignOutAlt, faUser);
