@@ -21,11 +21,9 @@ export default {
 
   computed: {
     statusText() {
-      if (this.isCiciaraOnline) {
-        return "online";
-      }
-
-      return "offline"
+      return this.isCiciaraOnline
+        ? "online"
+        : "offline";
     },
 
     statusColor() {
@@ -35,7 +33,7 @@ export default {
       return ["text-gray-500"];
     },
 
-    ...mapGetters(["isCiciaraOnline"]),
+    ...mapGetters(["isCiciaraOnline"])
   }
-}
+};
 </script>
