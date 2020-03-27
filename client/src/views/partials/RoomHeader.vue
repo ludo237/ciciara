@@ -4,9 +4,13 @@
       <h3 class="mb-1 font-extrabold">
         <span class="text-gray-800 capitalize"># {{ selectedRoom.name }}</span>
       </h3>
-      <div class="text-sm truncate">
+      <div class="flex items-stretch justify-between text-sm text-gray-600">
+        <div class="mr-3 inline">
+          <span v-text="selectedRoom.users.length" class="mr-1" />
+          <BaseIcon icon="users" />
+        </div>
         <span
-          class="text-gray-600 capitalize"
+          class="italic truncate capitalize"
           v-text="selectedRoom.description"
         />
       </div>
@@ -16,10 +20,16 @@
 </template>
 
 <script>
+import BaseIcon from "@/components/base/BaseIcon.vue";
+
 import { mapState } from "vuex";
 
 export default {
   name: "RoomHeader",
+
+  components: {
+    BaseIcon
+  },
 
   computed: {
     ...mapState(["selectedRoom"])
