@@ -57,7 +57,8 @@ export default {
   methods: {
     performLogin() {
       this.login({ username: this.username, room: this.room })
-        .then(() => {
+        .then(({ data: { user, room } }) => {
+          this.$socket.client.emit("room:join", { user: user.username, room });
           this.$router.push({ name: "room", params: { room: this.room } });
         })
         .finally(() => this.$refs.form.changeState("submitted"));
@@ -67,7 +68,7 @@ export default {
   },
 
   computed: {
-    ...mapState(["rooms"])
+    ...mapState(["user", "rooms"])
   }
 };
 </script>
