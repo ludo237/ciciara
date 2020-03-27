@@ -4,6 +4,7 @@ class Room {
   constructor(name) {
     this.id = uuid.v4();
     this.name = name;
+    this.description = "";
     this.users = [];
     this.messages = [];
     this.created_at = new Date();

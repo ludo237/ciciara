@@ -9,9 +9,7 @@ class Message {
   }
 
   static create(text, user) {
-    const message = new this(text, user);
-
-    return message.toJSON();
+    return new this(text, user);
   }
 
   static createAsBot(text) {
@@ -21,9 +19,7 @@ class Message {
       username: "Ciciara Bot",
     };
 
-    const message = new this(text, user);
-
-    return message.toJSON();
+    return new this(text, user);
   }
 
   toJSON() {

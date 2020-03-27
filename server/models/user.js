@@ -22,13 +22,9 @@ class User {
     this.updated_at = new Date();
   }
 
-  removeRoom(room) {
-    const index = this.rooms.findIndex(r => t.id == room.id);
-
-    if (index !== -1) {
-      this.rooms.splice(index, 1);
-      this.updated_at = new Date();
-    }
+  removeRoom() {
+    this.room_id = null;
+    this.updated_at = new Date();
   }
 
   toJSON() {
