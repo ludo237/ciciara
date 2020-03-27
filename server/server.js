@@ -15,7 +15,10 @@ const roomFactory = require("./models/room");
 let rooms = [];
 let users = [];
 
+rooms = roomFactory.generateStubs();
+
 io.on("connection", async socket => {
+  io.emit("rooms_info", { rooms });
 
   socket.on("room:join", payload => {
     let room = rooms.find(r => r.name === payload.room);
@@ -45,11 +48,11 @@ io.on("connection", async socket => {
     // Update room info
     io
       .to(room.name)
-      .emit("roomData", { room, user });
+      .emit("room_info", { room, user });
   });
 
   // Listen for a message
-  socket.on("message:sent", (payload) => {
+  socket.on("message:sent", payload => {
     user = users.find(u => u.socket_id == socket.id);
     room = rooms.find(r => r.id == user.room_id);
     message = messageFactory.create(payload.message, user)
@@ -64,7 +67,7 @@ io.on("connection", async socket => {
   // Broadcast user logout
   socket.on("disconnect", () => {
     // Stupid check because we have an inmemory db now
-    if (users.length > 0 && rooms.length > 0) {
+    try {
       user = users.find(u => u.socket_id == socket.id);
       room = rooms.find(r => r.id == user.room_id);
 
@@ -81,7 +84,9 @@ io.on("connection", async socket => {
       // Update room info
       io
         .to(room.name)
-        .emit("roomData", { room, user });
+        .emit("room_info", { room, user });
+    } catch (e) {
+      console.log(e);
     }
   });
 });
@@ -90,4 +95,4 @@ const PORT = process.env.PORT || 2370;
 
 server.listen(PORT, () => {
   console.log("Server is up and running");
-})
+});
