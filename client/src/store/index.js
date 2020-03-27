@@ -11,8 +11,7 @@ const state = {
     online: true
   },
   user: {},
-  rooms: [
-  ],
+  rooms: [],
   selectedRoom: {}
 };
 

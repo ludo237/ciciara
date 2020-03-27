@@ -20,9 +20,8 @@
 </template>
 
 <script>
-import BaseIcon from "@/components/base/BaseIcon.vue";
-
 import { mapState } from "vuex";
+import BaseIcon from "@/components/base/BaseIcon.vue";
 
 export default {
   name: "RoomHeader",

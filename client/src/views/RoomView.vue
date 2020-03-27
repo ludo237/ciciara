@@ -6,14 +6,7 @@
 
       <ChatMessages />
       <div class="px-4 flex-none">
-        <BaseInput
-          name="message"
-          v-model="message"
-          placeholder="Write a message"
-          help-text="Someone is typing..."
-          @keyup.enter.native="sendMessage"
-          required
-        />
+        <ChatInput />
       </div>
     </div>
   </div>
@@ -22,9 +15,8 @@
 <script>
 import RoomSidebar from "@/views/partials/RoomSidebar.vue";
 import RoomHeader from "@/views/partials/RoomHeader.vue";
-import BaseInput from "@/components/base/BaseInput.vue";
 import ChatMessages from "@/components/ChatMessages.vue";
-import { mapState } from 'vuex';
+import ChatInput from "@/components/ChatInput.vue";
 
 export default {
   name: "RoomView",
@@ -32,23 +24,8 @@ export default {
   components: {
     RoomSidebar,
     RoomHeader,
-    BaseInput,
-    ChatMessages
-  },
-
-  data: () => ({
-    message: ""
-  }),
-
-  methods: {
-    sendMessage() {
-      this.$socket.client.emit("message:sent", { user: this.user, message: this.message });
-      this.message = "";
-    }
-  },
-
-  computed: {
-    ...mapState(["user"])
+    ChatMessages,
+    ChatInput
   }
 };
 </script>
