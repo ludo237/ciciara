@@ -7,15 +7,20 @@
     </div>
     <div class="flex-grow overflow-hidden">
       <div class="flex justify-between">
-        <span class="font-semibold" v-text="message.user.username" />
-        <span class="text-gray-500 text-xs">11:46</span>
+        <span class="text-gray-900 font-bold" v-text="message.user.username" />
+        <span
+          class="text-gray-500 text-xs"
+          v-text="formattedDate"
+          :title="message.created_at"
+        />
       </div>
-      <p class="text-black leading-normal" v-text="message.text"></p>
+      <p class="text-gray-800 leading-normal" v-text="message.text"></p>
     </div>
   </div>
 </template>
 
 <script>
+import { format, parseISO } from "date-fns";
 import BaseIcon from "@/components/base/BaseIcon.vue";
 
 export default {
@@ -29,6 +34,14 @@ export default {
     message: {
       required: true,
       type: Object
+    }
+  },
+
+  computed: {
+    formattedDate() {
+      const date = parseISO(this.message.created_at);
+
+      return format(date, "kk:mm");
     }
   }
 };

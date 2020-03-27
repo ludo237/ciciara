@@ -1,5 +1,5 @@
 <template>
-  <div class="px-6 py-4 flex-1 overflow-y-scroll">
+  <div class="px-6 py-4 flex-1 overflow-y-scroll" ref="chat">
     <ChatMessage
       v-for="(message, index) in roomMessages"
       :key="index"
@@ -17,6 +17,15 @@ export default {
 
   components: {
     ChatMessage
+  },
+
+  watch: {
+    roomMessages() {
+      this.$nextTick(() => {
+        var container = this.$refs.chat;
+        container.scrollTop = container.scrollHeight;
+      })
+    }
   },
 
   computed: {
