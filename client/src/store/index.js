@@ -10,11 +10,7 @@ const state = {
   server: {
     online: true
   },
-  user: {
-    id: 2,
-    bot: false,
-    username: ""
-  },
+  user: {},
   rooms: [
     { id: 1, name: "lounge", description: "main channel for everyone", messages: [] },
     { id: 2, name: "memes", description: "a dedicated channel for memes", messages: [] }
