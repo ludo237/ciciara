@@ -1,35 +1,26 @@
 const express = require("express");
 const http = require("http");
 const socketio = require("socket.io");
-const uuid = require("uuid");
 
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
+const messageFactory = require('./models/message');
 
-io.on("connection", socket => {
-  // Welcome the client
-  socket.emit("welcome", "Ciciara connection established");
+io.on("connection", async socket => {
 
   // Broadcast user login
-  socket.broadcast.emit("connection", "New user has joined the chat");
+  socket.broadcast.emit("message", messageFactory.createAsBot("New user has joined"));
 
   socket.on("disconnect", () => {
     // Broadcast user logout
-    io.emit("disconnection", "A user has left the chat");
+    io.emit("message", messageFactory.createAsBot("A user has left the chat"));
   });
 
   // List for a message
-  socket.on("message_sent", ({ user, message }) => {
-    const messageObject = {
-      id: uuid.v4(),
-      user,
-      text: message,
-      created_at: new Date(),
-    };
-
-    io.emit("message_broadcast", messageObject);
+  socket.on("message:sent", ({ user, message }) => {
+    io.emit("message", messageFactory.create(message, user));
   })
 });
 
