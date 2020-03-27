@@ -14,6 +14,7 @@ const roomFactory = require("./models/room");
 // later it will be ported to mongoDB
 let rooms = [];
 let users = [];
+let typing = [];
 
 rooms = roomFactory.generateStubs();
 
@@ -51,6 +52,49 @@ io.on("connection", async socket => {
       .emit("room_info", { room, user });
   });
 
+  socket.on("message:typing", payload => {
+    user = users.find(u => u.socket_id == socket.id);
+    room = rooms.find(r => r.id == user.room_id);
+
+    const userInArray = typing.includes(user);
+
+    if (!userInArray && payload.status) {
+      typing.push(user);
+    }
+
+    if (userInArray && !payload.status) {
+      const index = typing.findIndex(u => u.id == user.id);
+
+      if (index !== -1) {
+        typing.splice(index, 1);
+      }
+    }
+
+    let message = "";
+
+    if (typing.length == 1) {
+      message = `${user.username} is typing...`;
+    }
+
+    if (typing.length == 2) {
+      message = "2 people are typing...";
+    }
+
+    if (typing.length === 3) {
+      message = "3 people are typing...";
+    }
+
+    if (typing.length > 3) {
+      message = "several people are typing...";
+    }
+
+    console.log(typing);
+
+    socket
+      .to(room.name)
+      .emit("typing", message);
+  });
+
   // Listen for a message
   socket.on("message:sent", payload => {
     user = users.find(u => u.socket_id == socket.id);
@@ -67,7 +111,7 @@ io.on("connection", async socket => {
   // Broadcast user logout
   socket.on("disconnect", () => {
     // Stupid check because we have an inmemory db now
-    try {
+    if (users.length > 0 && rooms.length > 0) {
       user = users.find(u => u.socket_id == socket.id);
       room = rooms.find(r => r.id == user.room_id);
 
@@ -85,8 +129,6 @@ io.on("connection", async socket => {
       io
         .to(room.name)
         .emit("room_info", { room, user });
-    } catch (e) {
-      console.log(e);
     }
   });
 });
