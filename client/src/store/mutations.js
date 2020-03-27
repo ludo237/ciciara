@@ -19,6 +19,10 @@ export default {
     state.selectedRoom.messages.push(message);
   },
 
+  [mutations.SET_ROOMS]: (state, rooms) => {
+    state.rooms = rooms;
+  },
+
   [mutations.SET_ROOM]: (state, room) => {
     state.selectedRoom = room;
   },
