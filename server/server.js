@@ -35,11 +35,17 @@ io.on("connection", async socket => {
     socket.join(room.name);
 
     // Broadcast user login to the specific room
-    const message = `Hello ${user.username} welcome to ${room.name}`;
+    const message = messageFactory.createAsBot(`Hello ${user.username} welcome to ${room.name}`)
+    room.addMessage(message);
 
     socket.broadcast
       .to(room.name)
-      .emit("message", messageFactory.createAsBot(message));
+      .emit("message", message.toJSON());
+
+    // Update room info
+    io
+      .to(room.name)
+      .emit("roomData", { room, user });
   });
 
   // Listen for a message
@@ -48,7 +54,11 @@ io.on("connection", async socket => {
     room = rooms.find(r => r.id == user.room_id);
     message = messageFactory.create(payload.message, user)
 
-    io.to(room.name).emit("message", message);
+    room.addMessage(message);
+
+    io
+      .to(room.name)
+      .emit("message", message.toJSON());
   });
 
   // Broadcast user logout
@@ -58,12 +68,20 @@ io.on("connection", async socket => {
       user = users.find(u => u.socket_id == socket.id);
       room = rooms.find(r => r.id == user.room_id);
 
+      const message = messageFactory.createAsBot(`Farwell, ${user.username} has left the chat`);
+
+      user.removeRoom();
       room.removeUser(user);
-      user.removeRoom(room);
+      room.addMessage(message);
 
-      message = `Farwell, ${user.username} has left the chat`;
+      io
+        .to(room.name)
+        .emit("message", message);
 
-      io.to(room.name).emit("message", messageFactory.createAsBot(message));
+      // Update room info
+      io
+        .to(room.name)
+        .emit("roomData", { room, user });
     }
   });
 });
