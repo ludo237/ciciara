@@ -1,6 +1,6 @@
 import * as mutations from "./mutation-types";
 
-export const login = async ({ commit }, payload) => {
+export const login = async ({ commit, state }, payload) => {
   // This is stupid right now because we don't have an API call here but
   // it will have sense in the future
   return new Promise(resolve => {
@@ -9,7 +9,9 @@ export const login = async ({ commit }, payload) => {
       roomId: parseInt(payload.room)
     });
 
-    resolve();
+
+
+    resolve({ data: { user: state.user, room: state.selectedRoom.name } });
   });
 };
 
