@@ -17,5 +17,13 @@ export default {
 
   [mutations.APPEND_MESSAGE]: (state, message) => {
     state.selectedRoom.messages.push(message);
+  },
+
+  [mutations.SET_ROOM]: (state, room) => {
+    state.selectedRoom = room;
+  },
+
+  [mutations.UPDATE_USER]: (state, user) => {
+    state.user = user;
   }
 };

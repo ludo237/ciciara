@@ -30,3 +30,8 @@ export const socket_messageBroadcast = ({ commit }, message) => {
 export const socket_message = ({ commit }, message) => {
   commit(mutations.APPEND_MESSAGE, message);
 }
+
+export const socket_roomData = ({ commit }, { room, user }) => {
+  commit(mutations.SET_ROOM, room);
+  commit(mutations.UPDATE_USER, user);
+}
