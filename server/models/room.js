@@ -1,10 +1,10 @@
 const uuid = require("uuid");
 
 class Room {
-  constructor(name) {
+  constructor(name, description) {
     this.id = uuid.v4();
     this.name = name;
-    this.description = "";
+    this.description = description || "";
     this.users = [];
     this.messages = [];
     this.created_at = new Date();
@@ -12,9 +12,15 @@ class Room {
   }
 
   static create(name) {
-    const room = new this(name);
+    return new this(name);
+  }
 
-    return room.toJSON();
+  static generateStubs() {
+    return [
+      new this("lounge", "first channel for everyone"),
+      new this("memes", "meme channel heheh"),
+      new this("nsfw", "+18 content only 🔞")
+    ];
   }
 
   addUser(user) {
@@ -40,6 +46,7 @@ class Room {
     return {
       id: this.id,
       name: this.name,
+      description: this.description,
       users: this.users,
       messages: this.messages,
       created_at: this.created_at,
