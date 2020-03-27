@@ -11,6 +11,8 @@ const state = {
     online: true
   },
   user: {
+    id: 2,
+    bot: false,
     username: ""
   },
   rooms: [

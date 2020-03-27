@@ -42,7 +42,7 @@ export default {
 
   methods: {
     sendMessage() {
-      this.$socket.client.emit("message_sent", { user: this.user, message: this.message });
+      this.$socket.client.emit("message:sent", { user: this.user, message: this.message });
       this.message = "";
     }
   },

@@ -24,3 +24,7 @@ export const socket_disconnect = ({ commit }) => {
 export const socket_messageBroadcast = ({ commit }, message) => {
   commit(mutations.APPEND_MESSAGE, message);
 }
+
+export const socket_message = ({ commit }, message) => {
+  commit(mutations.APPEND_MESSAGE, message);
+}

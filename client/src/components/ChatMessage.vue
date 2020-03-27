@@ -3,7 +3,7 @@
     <div
       class="w-10 h-10 rounded mr-3 flex items-center justify-center text-3xl text-gray-500"
     >
-      <BaseIcon icon="user" />
+      <BaseIcon :icon="resolveIcon" />
     </div>
     <div class="flex-grow overflow-hidden">
       <div class="flex justify-between">
@@ -14,7 +14,7 @@
           :title="message.created_at"
         />
       </div>
-      <p class="text-gray-800 leading-normal" v-text="message.text"></p>
+      <p class="leading-normal" :class="formatMessage" v-text="message.text" />
     </div>
   </div>
 </template>
@@ -42,6 +42,19 @@ export default {
       const date = parseISO(this.message.created_at);
 
       return format(date, "kk:mm");
+    },
+
+    formatMessage() {
+      return this.message.user.bot
+        ? ["text-gray-500", "italic"]
+        : ["text-gray-800"]
+
+    },
+
+    resolveIcon() {
+      return this.message.user.bot
+        ? "robot"
+        : "user";
     }
   }
 };
