@@ -8,7 +8,11 @@ export default ({ db }: TInput) => {
 
   const connect = () => {
     mongoose
-      .connect(db, { useUnifiedTopology: true, useNewUrlParser: true })
+      .connect(db, {
+        useCreateIndex: true,
+        useUnifiedTopology: true,
+        useNewUrlParser: true
+      })
       .then(() => console.info(`Successfully connected to ${db}`))
       .catch(error => {
         console.error(`Error connecting to database: ${db}`, error);
