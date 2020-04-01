@@ -1,3 +1,3 @@
-export * from "./user.model";
-export * from "./room.model";
-export * from "./message.model";
+export * from "./user.entity";
+export * from "./room.entity";
+export * from "./message.entity";

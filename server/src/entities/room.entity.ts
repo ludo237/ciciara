@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose";
-import { IMessage } from "./message.model";
-import { IUser } from "./user.model";
+import { IMessage } from "./message.entity";
+import { IUser } from "./user.entity";
 
 export interface IRoom extends Document {
   name: string;
