@@ -8,7 +8,7 @@ import connect from "./database";
 const devMode = process.env.NODE_ENV === "development";
 
 // Initialize Dotenv
-require("dotenv").config({ path: ".env" });
+require("dotenv").config({ path: ".env.local" });
 
 // Initialize Socket
 const io = require("socket.io")(require("http").Server(App));
