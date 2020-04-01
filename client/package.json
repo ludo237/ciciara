@@ -1,16 +1,11 @@
 {
   "name": "ciciara",
   "version": "0.1.0",
-  "description": "Ciciara is a vuejs based real time chat that offers multi room functionally.",
   "private": false,
-  "license": "MIT",
+  "description": "Ciciara is a vuejs based real time chat that offers multi room functionally.",
   "author": {
     "name": "Claudio Ludovico",
     "url": "https://gitlab.com/ludo237/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/ludo237/ciciara"
   },
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -35,12 +30,12 @@
     "vuex": "^3.1.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.2.0",
-    "@vue/cli-plugin-eslint": "~4.2.0",
-    "@vue/cli-plugin-pwa": "~4.2.0",
-    "@vue/cli-plugin-router": "~4.2.0",
-    "@vue/cli-plugin-vuex": "~4.2.0",
-    "@vue/cli-service": "~4.2.0",
+    "@vue/cli-plugin-babel": "~4.3.0",
+    "@vue/cli-plugin-eslint": "~4.3.0",
+    "@vue/cli-plugin-pwa": "~4.3.0",
+    "@vue/cli-plugin-router": "~4.3.0",
+    "@vue/cli-plugin-vuex": "~4.3.0",
+    "@vue/cli-service": "~4.3.0",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.0.3",
     "eslint": "^6.7.2",
@@ -50,5 +45,10 @@
     "prettier": "^1.19.1",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/ludo237/ciciara"
   }
 }
